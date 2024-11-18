@@ -1,0 +1,342 @@
+<!DOCTYPE html> <!-- Aqui definimos o tipo de documento. Nesse caso, um arquivo html    -->
+<html lang="pt-br"> <!-- Aqui estamos indicando o idioma do conteúdo da página. Esse atributo não vai mudar a estrutura do código ou da ágina em si, mas ajuda os navegadores a oferecer o conteúdo para o usuário adequado e fornecer a melhor experiência possível  -->
+<head>
+    <meta charset="UTF-8"><!-- É uma tag utilizada para que a página seja compatível com diversos tipos de caracteres diferentes, serve principalmente para páginas que não tem o inglês como idioma principal -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Uma tag usada para ajustar as proporções da página de acordo com a tela do usuário -->
+    <title> Assistente de Serviços de Saúde </title><!-- Definição do título da página(O nome aque apareece na guia do navegador) -->
+   <style>/* Aqui entramos na parte de CSS da página. Basicamente, aqui vamos definir como vai ser o estilo da página, a aparência do conteúdo. Inclusive, é por isso que este comentário está com um comando diferente, pois estamos lidando com outra linguagem*/
+        /* Reset básico para garantir consistência no layout e padrão para a página começar limpa, zerando as margens para os dispositivos**/
+        * {/* Esse asterisco é usado em CSS para todos os elementos da página sem exceção */
+            margin: 0;/* Removendo a margem de todos os elementos */
+            padding: 0;/* Removendo o preenchimento de todos os elementos */
+            box-sizing: border-box;/* Ajuda a controlar o tamnho da largura e altura dos elementos, evitando que passem do limite de tamanho */
+        }
+        a{/* Aqui configuramos o estilo dos links da página */
+            color: white;/* Definindo a cor do texto como branca */
+            text-decoration: none;/* Remove aquela linha que costuma sublinhar os links */
+            transition: 0.3s; /* Adiciona uma transição de 0.3 segundos quando o link é clicado e troca de página */
+        }
+
+        a:hover{/* Aqui adicionamos um efeito de diminuir a opacidade para 0.7 quando o mouse estiver sobre o link */
+            opacity: 0.7;
+        }
+        /* A partir daqui vamos começar a configurar o estilo da navbar, a barra que fica fixada na parte de cima da página */
+        .tittle-nav{/* Configurando o texto do título da navbar */
+            font-size: 24px;/* Definindo o tamanho da fonte */
+            text-transform: uppercase;/* Deixa todas as letras maiúsculas */
+            letter-spacing: 4px; /* Cria um espaçamento entre as letras */
+            color: white;/* Definindo a cor do texto como branca */
+
+        }
+
+        nav {/* Configurando a navbar em si */
+            display: flex;/* Usando um layout flexível para organizar os elementos */
+            justify-content: space-around;/* Distribuindo os espaços igualmente */
+            align-items:center;/* Centralizando o elemento */
+            font-family: Arial, Helvetica, sans-serif;/* Definindo a fonte do texto*/
+            background-color: darkcyan;/* Definindo a cor de fundo da barra */
+            height: 10vh;/* Definindo a altura da barra em relação a página */
+            position: fixed; /* Fixando no topo da página */
+            top: 0;/* Alinhando no topo */
+            left: 0;/* Alinhando na esquerda */
+            width: 100%; /* Ocupa toda a largura da tela  */
+            z-index: 1000; /* Fica acima dos outros elementos */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);/* Adiciona um leve efeito de sombra por baixo da barra */
+    
+        }
+
+        .nav-placeholder {/* Aqui estamos nos certificando que o conteúdo da página não vai ficar coberto pela navbar, criando um espaçamento */
+         height: 10vh;
+         width: 100%;
+        }
+
+        .nav-list{/* Configurando a lista de elementos que vão estar presentes na navbar */
+            list-style: none; /* Tirando os marcadores padrões de listas como "." , "-" ou números */
+            display: flex; /* Faz com que os elementos apareçam um ao lado do outro ao invés de emplihar como o padrão das listas */
+        }
+
+        .nav-list li{/* Configurando para melhorar a visualização dos textos */
+            letter-spacing: 3px;/* Espaçando as letras */
+            margin-left: 32px;/* Espaçando os elementos da lista */
+        }
+
+        
+        /* Aqui vamos configurar o "corpo" da página, definindo os principais elementos que o formam*/
+        body {/* Definições gerais do corpo*/
+            font-family: Arial, sans-serif;/* Definindo a fonte do texto */
+            line-height: 1.6;/* Espaçando as linhas de texto */
+            color: #fff;/* Definindo a cor do texto */
+            padding: 20px;/* Adiciona um preenchimento em todos os lados */
+            background-color:whitesmoke; /* Definindo a cor do fundo */
+        }
+
+        h1, h2, p {/* Adicionando uma margem no topo e no fundo dos textos tipo h1,h2 e p */
+            margin: 10px 0;
+        }
+
+        h2{
+            text-align: center;
+        }
+        .container {/* Configurando oContainer principal. Serve como uma caixa de destaque para o item no site*/
+            width: 100%;
+            max-width: 1300px;/* Definindo tamanho máximo para o conteiner*/
+            margin: 20px auto;
+            padding: 20px;/* Adiciona um preenchimento em todos os lados */
+            background-color: darkcyan; /* Definindo cor do fundo do conteiner*/
+            border-radius: 10px;/* Arredondando as bordas*/
+            display: flex; /* Ativa o flexbox */
+            flex-direction: column; /* Coloca os elementos em uma coluna */
+            align-items: center; /* Centraliza horizontalmente os elementos */
+            justify-content: center; /* Centraliza verticalmente os elementos, se necessário */
+            text-align: center; /* Centraliza textos dentro dos elementos */
+        }
+
+        
+        h1 {/*Definindo os textos tipo h1 que será usado como título de introdução */
+            font-size: 2.5rem;/* Definindo tamanho da fonte*/
+            color:white; /* Cor do título do h1*/
+            text-align: center;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;/* Definindo família das fontes*/
+        }
+
+        h3{/*Definindo os textos tipo h3 que será usado como título de cada tópico */
+            color: #218838;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 25px;
+        }
+
+        
+        .question-container {/* Definindo características dos containers das perguntas */
+            margin: 20px 0; /* Adicionando uma margem no topo e no fundo dos textos */
+            padding: 20px;/* Adiciona um preenchimento em todos os lados */
+            border-radius: 8px;/* Arredonda a borda */
+            background-color:whitesmoke;
+            background-image: url(./img/smiling-nurse-medical-worker-showing-thumbs-up-shoulder-after-vaccine-covid-vaccination-campaign.jpg) ;/* Imagem de fundo para o quadro de perguntas */
+            background-size: cover;/* Fazendo a imagem cobrir todo o conteiner */
+            background-position: auto;/* Fazendo o posicionamento da imagem de forma automática */
+        }
+
+        
+        .question-container h2 {/* Estilo para perguntas de texto tipo h2 */
+            font-size: 2rem;
+            color:black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .question-container p {/* Estilo para perguntas de texto tipo p */
+            font-size: 1.3rem;
+            color: darkgreen;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+        .btn {/* Estilo com cores de fundo, texto do botao que contém o link que redireciona o clique do usuário para o site recomendado*/
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;/* Removendo a borda padrão  */
+            border-radius: 5px;/* Arredonda a borda do botão*/
+            cursor: pointer;/* Muda o cursor do mouse para indicar que o botão é clicável  */
+            text-decoration: none;/* Remove a linha que costuma sublinhar os links */
+            font-size: 1rem;
+            display: inline-block;/* Basicamente, esse comando faz com que o link apareça na mesma linha que outros elementos, permitindo manipular ele sem prejudicar sua exibição com uma quebra de linha por exemplo */
+            margin-top: 10px;
+        }
+
+        .btn:hover {/* Aqui adicionamos um efeito de mudar a cor quando o mouse estiver sobre o botão */
+            background-color: #218838;
+        }
+
+        .container-text{/* Definindo o estilo dos elementos do conteiner */
+            width: 100%;
+            margin: 20px;
+            padding: auto; /* Mesma função dos paddings presentes anteriormente, porém faz de forma automática de acordo com o tamnho do conteiner*/
+            background-color:whitesmoke; /* Definindo cor de funddo do conteiner*/
+        }
+
+        .tittle-text{ /* Definindo estilos para o texto e elementos do título*/
+            color:white;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            padding: auto;
+            background-color: darkcyan; /* Definindo cor de funddo do conteiner*/
+            background-size:auto; /* Definindo o tamanho do fundo automaticamente,*/
+            border-radius: 10px;
+            width: 100%;
+            margin: 10vh;
+            max-width: 1100px; /* Definindo a altura máxima do conteiner*/
+
+        }
+        p{/*Definindo os textos tipo h1 que será usado como título de introdução */
+            font-family:Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        img{/*Definindo os estilos para as imagens como um todo */
+            display: block;/* Comando parecido com alguns semelhantes usados nos links. Basicamente, faz com que a imagem seja considerada um bloco o que facilita seu controle */
+            margin: 0 auto; /* Aqui estamos centralizando a imagem */
+            max-width: 100%; /*Definindo limite para a largura máxima em relação ao conteiner */
+            height: auto;/*Definindo a altura de forma automática */
+            width: 500px;/*Definindo a largura da imagem */
+        }
+        
+        .img-container img{/*Faz com que a imagem seja considerada como um item em linha */
+            display: inline-block;
+        }
+
+        .img-container{/*Centralizando a imagem no conteiner */
+            text-align: center;
+        }
+
+        footer{/*Definindo a estilização do rodapé */
+            color: grey;
+            padding: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .container-footer {/*Definindo a estilização do conteiner do rodapé */
+            width: 50%;
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center; 
+        }
+
+        .question-footer {/*Definindo a estilização dos conteúdos presentes no rodapé */
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /*Cria um efeito leve de sobra por baixo do rodapé, assim como fizemos na navbar */
+        }
+
+        .question-footer h2{/*Definindo a estilização dos textos tipo h2 que vão ser usados no rodapé */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color:#218838;
+
+        }   
+        /* Aqui fechamos o style da página, ou seja, todos os estilos gráficos já foram determinados para usarmos no body que vai colocar de fato os elementos na tela */
+    </style>
+</head>
+<body>
+    <!-- Agora vamos começar o body da aplicação. Como pode notar, até mesmo a forma do comentário mudou, isso indica que voltamos a trabalhar com HTML -->
+    <!-- Antes de falar de fato sobre os códigos do body, para poupar tempo, gostaria de explicar o conceito de "class" para não repeti-lo todas as vezes no processo -->
+    <!-- class ou "Classe", de forma resumida, é uma forma que nós temos de agrupar elementos e usar as definições criadas anteriormente no head(No nosso caso é um estilo em CSS, mas também poderia ser uma lógica em javascript).Ou seja, toda vez que eu precisar de um tipo específico de elemento, eu posso atribuir uma classe a ele e usar essa classe em outros elementos de mesma funcionabilidade-->
+    
+    <header> <!-- header serve para criar um cabeçalho para a páginha -->
+        <nav><!-- Criando a navbar -->
+            <h1 class="tittle-nav"> Saúde+ </h1><!-- Aqui temos um bom exemplo do conceito de classes. Criamos um texto h1 para a criação do título do cabeçalho, mas estamos atribuindo a classe "tittle-nav" que criamos no head da página, logo, o estilo definido na classe vai passar a ser o desse h1   -->
+            <ul class="nav-list"><!-- "ul" serve para criar listas. Mais uma vez, estamos atribuindo um classe, logo, o estilo da lista estará de acordo com a classe criada -->
+                <li><!-- Usamos "li" para enumerar/ separar os elementos de uma lista  -->
+                    <a href="https://www.tuasaude.com/principais-doencas-da-coluna/"> POSSÍVEIS DOENÇAS </a><!-- A tag "a" cria um link e href define o destino do link, nesse caso é o link do site de saúde-->
+                </li>
+                <li>
+                    <a href="https://www.doctoralia.com.br/doencas/doencas-da-coluna-vertebral/rio-de-janeiro"> ACHE UM MÉDICO </a><!-- Mesmo padrão do código anterior -->
+                </li>
+            </ul>
+        </nav>
+        <div class="nav-placeholder"></div> <!-- Atribuindo ao "div"(Basicamente, é uma forma de contêiner genérica para agrupar elementos) a classe nav-placeholder para por em prática o estilo criado --> 
+    </header>
+
+    <div class="container"><!-- Atribuindo ao div a classe de container, ou seja, estamps criando a estrutura do contêiner que definimos no CSS -->
+        <h1>Dor nas costas? Vamos te ajudar a encontrar o serviço certo!</h1><!-- Título do contêiner -->
+
+        <div class="question-container"><!-- Pergunta 1, separada por parágrafos-->
+            <h2>Está com dores nas costas?</h2>
+            <p>Vamos te ajudar a entender! </p>
+            <p>Sugiro esta ajuda:</p>
+            <a href="https://www.doctoralia.com.br/doencas/doencas-da-coluna-vertebral/rio-de-janeiro" class="btn" target="_blank">Clique aqui e ache seu Médico!</a> <!-- Referência para levar o usuário ao site com informações.Herda o estilo da classe btn para o link. Além disso, o atributo "target:_blank" faz com que o link abra outra aba-->
+        </div>
+         
+        
+    </div>
+    <main><!-- Aqui estamos determinando o conteúdo principal da página. Em HTML o main não é obrigatório e não cria ou altera nada no código em si, ele serve mais como uma forma de organizar e auxiliar os navegadores -->
+        <section id="secao1"><!-- Aqui estamos criando uma sessão e a identificando como "secao1" -->
+            <div class="container-text"><!-- Mais uma vez usamos div para criar um contêiner que está recebendo o estilo da  classe "container-text" -->
+                <h2 class="tittle-text"> Entenda sobre: Variedades de Afecções Dorsais</h2><!-- Criando texto do contêiner -->
+            </div>
+
+            <!-- A partir daqui, percebe-se que o código se repete para os próximos tópicos, então vou comentar o funcionamento do primeiro que serve para todo os outros -->
+            <!-- Texto e Imagem 1 -->
+            <div class="tittle-two"><!-- Criando um contêiner que vai ter os estilos definidos da classe "tittle-two" -->
+                <h3>1. Distensão Muscular</h3><!-- Título do tópico-->
+                <p><!-- Texto do conteúdo-->
+                    A distensão muscular ocorre quando um músculo ou tendão é exageradamente rompido ou esticado. 
+                    Normalmente esse tipo de lesão é resultante de movimentos extremamente bruscos, esforço físico demasiado, 
+                    uso descabido de um músculo.
+                </p>
+                <div class="img-container"><!-- Definindo o estilo da imagem por meio da classe "img-conteiner"-->
+                    <img src="https://adrianoleonardi.com.br/wp-content/uploads/2019/04/lesoes-musculares-5-539x303.jpg.webp"><!-- Inserindo a imagem por meio do endereço na internet-->
+                </div>
+            </div>
+
+            <!-- Texto e Imagem 3 -->
+            <div class="tittle-two">
+                <h3>2. Hérnia de Disco</h3>
+                <p>
+                    A hérnia de disco é uma lesão que acontece com muita frequência. Uma das doenças que mais provoca dores nas costas.  
+                    Ocorre quando um dos discos intervertebrais se desloca ou sofre ruptura, ocasionando o vazamento do núcleo gelatinoso interno 
+                    para fora do anel fibroso que o envolve.
+                </p>
+                <div class="img-container">
+                    <img src="https://www.cref1.org.br/wp-content/uploads/2021/12/hernia-de-disco-cref1-2.jpg">
+                </div>
+            </div>
+
+            <!-- Texto e Imagem 4 -->
+            <div class="tittle-two">
+                <h3>3. Escoliose</h3>
+                <p>
+                    A escoliose é uma circunstância em que a coluna vertebral manifesta uma curvatura anormal lateral, 
+                    assumindo a forma de um “C” ou “S” quando vista de frente ou de trás. 
+                    Normalmente, a coluna é reta quando observada sob essa perspectiva, mas em casos de escoliose, 
+                    acontece um desvio lateral, que pode diversificar de leve a grave.
+                </p>
+                <div class="img-container">
+                    <img src="https://danielsoutoortopedista.com.br/wp-content/uploads/2020/05/escoliose-1024x576.png">
+                </div>
+            </div>
+
+            <!-- Texto e Imagem 5 -->
+            <div class="tittle-two">
+                <h3>4. Espondilólise</h3>
+                <p>
+                    A Espondilólise é uma condição tipificada por uma fratura de estresse ou fissura em umas das vértebras da coluna, 
+                    essa lesão ocorre na pars interarticularis, uma pequena porção óssea que conecta diferentes partes da vértebra. 
+                    Apesar de muitas vezes assintomática, pode causar dor e, em casos mais graves, evoluir para outros problemas.
+                </p>
+                <div class="img-container">
+                    <img src="https://6e3708bed7.clvaw-cdnwnd.com/39c670012d983c7283ee8bfde857fec7/system_preview_detail_200003248-b266eb2672/espondilolistese-escorregamento-vertebra.png">
+                </div>
+            </div>
+
+             <!-- Texto e Imagem 6 -->
+            <div class="tittle-two">
+                <h3>5.	Ciatalgia </h3>
+                <p>
+                    A ciatalgia, conhecida também como dor ciática, ocorre devido à compressão, irritação ou inflamação do nervo ciático. Esse nervo é o maior do corpo humano, saindo da região lombar da coluna, passando pelos glúteos e descendo pelas pernas até os pés. Não é uma doença em si, mas um sintoma de algum problema subjacente na coluna ou nos nervos.
+                </p>
+                <div class="img-container">
+                    <img src="https://colunar.com.br/wp-content/uploads/2024/06/dor_ciatica_01-1.jpg">
+                </div>
+            </div>
+        </section><!-- Finalizando a seção -->
+    </main>
+
+    
+    <footer class="container-footer"><!-- Criando o rodapé com informações de ano de atualiazação do site + proteção de direitos autorais e informação de direitos protegidos-->
+        <div class="question-footer"><!-- Atribuindo o estilo da classe para os elementos do rodapé -->
+            <h2>Você não precisa viver com essa dor sozinho!</h2>
+            <p>Conte com a ajuda de profissionais especializados e receba a atenção que a sua saúde merece.</p>
+            <a href="https://www.doctoralia.com.br/doencas/doencas-da-coluna-vertebral/rio-de-janeiro" class="btn" target="_blank"><!-- Aqui temos uma parte interessante, além de atribuir o estilo do link com a classe "btn" usamos o atributo target="_blank para fazer com que o link abra em uma nova aba ao invés de abrir na mesma do site" -->
+                    Clique e encontre seu Médico!
+            </a>
+        </div>
+    </footer>    
+    <footer><!-- Criando último rodapé para estilizar o site e deixa-lo parecido com outros semelhantes. Nesse caso, estamos criando uma mensagem de direitos autorais -->
+        <p>© 2024 Assistente de Serviços de Saúde- Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
